@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="WebApp_ID" version="2.4" 
+	xmlns="http://java.sun.com/xml/ns/j2ee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+	<display-name>Archetype Created Web Application</display-name>
+
+
+	<!-- <welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list> -->
+
+	<!-- Para las Annotations de Spring, en especial las de "@Configuration", -->
+	<context-param>
+		<param-name>contextClass</param-name>
+		<param-value>
+          org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+      </param-value>
+	</context-param>
+
+	<!-- Le decimos a Spring donde busque la Configuracion Base y los Beans -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>ar.edu.utn.ba.dds.config.AppConfig</param-value>
+	</context-param>
+
+	<!-- Indicamos que tipo de dispatcher queremos y cuantos correran al mismo tiempo -->
+	<!-- El Dispatcher se encarga de "atrapar" todas los request de paginas y redireccionarlos al controller que corresponda -->
+	<servlet>
+		<servlet-name>dispatcher</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+
+	<!-- Inicializa el contextClass y el contextConfigLocation -->
+		<init-param>
+			<param-name>contextClass</param-name>
+			<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>ar.edu.utn.ba.dds.config.AppConfig</param-value>
+		</init-param>
+		
+		<!-- Le decimos al Dispatcher que sera lo primero en ser cargado al iniciar la aplicacion -->
+		<load-on-startup>1</load-on-startup>
+
+
+	</servlet>
+
+	<!-- Le dice al Dispatcher como debe "separar" la URL para elegir a que modulo ir -->
+	<servlet-mapping>
+		<servlet-name>dispatcher</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+
+	<listener>
+  		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+	<listener>	
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+</web-app>

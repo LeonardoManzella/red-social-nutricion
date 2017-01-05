@@ -1,0 +1,64 @@
+<!-- ====================================================================================== -->
+<!-- 				Pagina para Mostrar las Comidas Planificadas por el Usuario				-->
+<!-- ====================================================================================== -->
+
+<!-- DTD Para que marque y autocorrija errores de ThymeLeaf o de HTMl -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+	<head>
+		 <!-- Incluyo a Bootstrap FrameWork -->
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/bootstrap-3.3.2-dist/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/bootstrap-3.3.2-dist/css/bootstrap-theme.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/style/main.css"/>
+		<script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+		<script  type="text/javascript" src="/GreenFood/public/js/main.js"></script>
+	</head>
+	
+	
+	<body>	
+		<div class="background">
+		
+		
+			<!-- Incluyo el Menu a traves de ThymeLeaf -->
+			<div th:include="menu :: incluirMenu"></div>
+		
+			<!-- Cuerpo -->
+			<div class="container" id="cuerpo">
+			
+				<h2>COMIDAS PLANIFICADAS</h2>
+				<table>
+					<tr>
+						<th>Nombre Comida</th>
+						<th>Fecha</th>
+						<th>Horario</th>
+					</tr>
+					
+					<tr th:each="comida : ${comidasPlanificadas}">
+						<td th:text="${comida.getRecetaAsociada().getNombre()}">NombreReceta</td>
+						<td th:text="${comida.obtenerStringFecha()}">Fecha</td>
+						<td th:text="${comida.obtenerStringHorario()}">Horario</td>
+					</tr>
+				</table>
+			</div>
+
+
+			<!-- Footer -->
+			<div id="footer">
+				<div class="navbar-default navbar-static-bottom degradado noselect">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<p>Green Food S.A.© 2015 | Recetas, Comidas</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+		</div>
+	</body>
+</html>

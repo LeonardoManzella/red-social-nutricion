@@ -1,0 +1,77 @@
+<!-- ====================================================================================== -->
+<!-- 					Pagina para Crear una Receta en Base a Otra (Duplicar)				-->
+<!-- ====================================================================================== -->
+
+<!-- DTD Para que marque y autocorrija errores de ThymeLeaf o de HTMl -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+	<head>
+		 <!-- Incluyo a Bootstrap FrameWork -->
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/bootstrap-3.3.2-dist/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/bootstrap-3.3.2-dist/css/bootstrap-theme.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/style/main.css"/>
+		<script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+		<script  type="text/javascript" src="/GreenFood/public/js/main.js"></script>
+	</head>
+	
+	
+	<body>	
+		<div class="background">
+		
+		
+			<!-- Incluyo el Menu a traves de ThymeLeaf -->
+			<div th:include="menu :: incluirMenu"></div>
+		
+			<!-- Cuerpo -->
+			<div class="container" id="cuerpo">
+			
+			
+				<h3> RECETA: <span th:text="${receta.getNombre()}">Receta</span></h3>
+				
+				<p>Descripcion: <span th:text="${receta.getDescripcion()}">Descripcion</span></p>
+				<p th:if="${receta.getRecetaBase()!=null}">RecetaBase: <span th:text="${receta.getRecetaBase().getNombre()}">Ninguna</span></p>
+				<p>Calorias: <span th:text="${receta.getCalorias()}">0</span></p>
+				<p>Calificacion Promedio: <span th:text="${receta.calcularPromedio()}">0.0</span></p>
+			
+				<br/>
+			
+				<h3>INGREDIENTES</h3>
+				<table>
+					<tr>
+						<th>Nombre Ingrediente</th>
+					</tr>
+					
+					<tr th:each="ingrediente : ${receta.getListaIngredientes()}">
+						<td th:text="${ingrediente.getNombre()}">NombreIngrediente</td>
+					</tr>
+				</table>
+			
+				<br/><br/>
+			
+				<form action="#" th:action="@{'/recetas/duplicar/' + ${receta.getId()}}" method="post">
+					nombreReceta: <input type="text" name="nuevoNombre" required="required"/>
+					<input type="submit" value="Duplicar Receta" />
+				</form>
+			</div>
+
+
+			<!-- Footer -->
+			<div id="footer">
+				<div class="navbar-default navbar-static-bottom degradado noselect">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<p>Green Food S.A.© 2015 | Recetas, Comidas</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+		</div>
+	</body>
+</html>

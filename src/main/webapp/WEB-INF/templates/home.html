@@ -1,0 +1,93 @@
+<!-- ========================================================================================= -->
+<!-- Pagina de Inicio, Muestra Hasta 10 Recetas segun varias Reglas de Negocio (ver enunciado) -->
+<!-- ========================================================================================= -->
+
+<!-- DTD Para que marque y autocorrija errores de ThymeLeaf o de HTMl -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+	<head>
+		 <!-- Incluyo a Bootstrap FrameWork -->
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/bootstrap-3.3.2-dist/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/bootstrap-3.3.2-dist/css/bootstrap-theme.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/style/main.css"/>
+		<script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+		<script  type="text/javascript" src="/GreenFood/public/js/main.js"></script>
+	</head>
+	
+	
+	<body>	
+		<div class="background">
+		
+			<!-- Incluyo el Menu a traves de ThymeLeaf -->
+			<div th:include="menu :: incluirMenu"></div>
+		
+			<!-- Slider -->
+			<div id="carousel-slider" class="carousel slide noselect" data-ride="carousel" data-interval="3500">
+
+				<!-- Indicators -->
+				<ol class="carousel-indicators noselect">
+					<li data-target="#carousel-slider" data-slide-to="0" class="active"></li>
+					<li data-target="#carousel-slider" data-slide-to="1"></li>
+					<li data-target="#carousel-slider" data-slide-to="2"></li>
+				</ol>
+
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner" role="listbox">
+					<div class="item active">
+						<div th:each="receta : ${diezMejoresRecetas_1}">
+							<p>Nombre: <span th:text="${receta.getNombre()}">Nombre</span></p>
+							<p>Descripcion: <span th:text="${receta.getDescripcion()}">Descripcion</span></p>
+							<p>Calificacion Promedio: <span th:text="${receta.calcularPromedio()}">0.0</span></p>
+							<p>Calorias: <span th:text="${receta.getCalorias()}">0</span></p>
+						</div>
+					</div>
+
+					<div class="item">
+						<div th:each="receta : ${diezMejoresRecetas_2}">
+							<p>Nombre: <span th:text="${receta.getNombre()}">Nombre</span></p>
+							<p>Descripcion: <span th:text="${receta.getDescripcion()}">Descripcion</span></p>
+							<p>Calificacion Promedio: <span th:text="${receta.calcularPromedio()}">0.0</span></p>
+							<p>Calorias: <span th:text="${receta.getCalorias()}">0</span></p>
+						</div>
+					</div>
+				</div>
+
+				<!-- Controls -->
+				<a class="left carousel-control" href="#carousel-slider" role="button" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+					<span class="sr-only">Anterior</span>
+				</a>
+				<a class="right carousel-control" href="#carousel-slider" role="button" data-slide="next">
+					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+					<span class="sr-only">Siguiente</span>
+				</a>
+			</div>
+		
+		
+			<!-- Cuerpo -->
+			<div class="container" id="cuerpo">
+				<h2>Bienvenidos!</h2>
+				<p>Green Food le permite crear recetas y planificar sus comidas en base a sus necesidades nutricionales.</p>
+			</div>
+
+
+			<!-- Footer -->
+			<div id="footer">
+				<div class="navbar-default navbar-static-bottom degradado noselect">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<p>Green Food S.A.© 2015 | Recetas, Comidas</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+		</div>
+	</body>
+</html>

@@ -1,0 +1,63 @@
+<!-- ====================================================================================== -->
+<!-- 				Fragmento de Template para Menu de todas las demas Paginas				-->
+<!-- ====================================================================================== -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+	<body>	
+		<!-- La MAGIA para incluir el menu esta en el Atributo de Thymeleaf "th:fragment" -->
+		<div class="navbar navbar-inverse navbar-static-top noselect" id="header" th:fragment="incluirMenu">
+			<div class="container" id="container-header">
+				<div class="navbar-header">
+					<a class="navbar-brand" id="logo" href="#"  th:href="@{/}"><img src="/GreenFood/public/imagenes/logo.png" height="50px" alt="The Bakers"/></a>
+					<button type="button" class="navbar-toggle" id="mobile-btn" data-toggle="collapse" data-target=".navbar-collapse" style="{{color}}" ng-mouseover="color = 'background: rgba(50, 0, 0, 255)'" ng-mouseleave="color = 'background: rgba(50, 0, 0, 0)'">
+						<span class="sr-only">Desplegar Menu</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<ul class="nav navbar-nav navbar-right collapse navbar-collapse" id="menu">
+					
+					<li class="active"><a href="#"  th:href="@{/}">Inicio</a></li>
+					
+					<!-- Cosas que Puede hacer el Usuario SIN Loguearse -->
+					<li th:if="${usuarioEstaLogueado==false}"><a href="#" th:href="@{/login}">Loguearse</a></li>
+					<li th:if="${usuarioEstaLogueado==false}"><a href="#" th:href="@{/registrar}">Registrarse</a></li>
+					
+					
+					<!-- Cosas que Puede hacer el Usuario SI es Administrador y esta Logueado -->
+					<li th:if="${(usuarioEstaLogueado==true) and (usuarioEsAdmin==true)}" class="dropdown">			<!-- Menu Desplegable de Admin -->
+		                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin<span class="caret"></span></a>
+		                <ul class="dropdown-menu" role="menu">
+		                  <li><a href="#" th:href="@{/reportes}">Reportes</a></li>
+		                  <li><a href="#" th:href="@{/estadisticas}">Estadisticas</a></li>
+		                </ul>
+		            </li>
+					
+					<!-- Cosas que Puede hacer el Usuario CON Loguearse -->
+					<li th:if="${usuarioEstaLogueado==true}" class="dropdown">			<!-- Menu Desplegable de Recomendaciones -->
+		                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Recomendaciones<span class="caret"></span></a>
+		                <ul class="dropdown-menu" role="menu">
+		                  <li><a href="#" th:href="@{/recomen/dia}">del Dia</a></li>
+		                  <li><a href="#" th:href="@{/recomen/balanceo}">por Balanceo</a></li>
+		                </ul>
+		            </li>
+					
+					<li th:if="${usuarioEstaLogueado==true}" class="dropdown">			<!-- Menu Desplegable de Recetas y Comidas -->
+		                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Recetas y Comidas<span class="caret"></span></a>
+		                <ul class="dropdown-menu" role="menu">
+		                  <li><a href="#" th:href="@{/recetas}">Ver Recetas</a></li>
+		                  <li><a href="#" th:href="@{/recetas/crear}">Crear Recetas</a></li>
+		                  <li><a href="#" th:href="@{/comidas}">Ver Comidas Planificadas</a></li>
+		                </ul>
+		            </li>
+					
+					<li th:if="${usuarioEstaLogueado==true}"><a href="#" th:href="@{/grupos}">Grupos</a></li>
+					<li th:if="${usuarioEstaLogueado==true}"><a href="#" th:href="@{/logout}">Log Out</a></li>
+					<li th:if="${usuarioEstaLogueado==true}"><a href="#" th:href="@{/perfil}" th:text="${objetoUsuario.getNombre()}">Nombre Usuario</a></li>
+					
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>

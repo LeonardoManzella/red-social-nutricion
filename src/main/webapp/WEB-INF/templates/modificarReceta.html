@@ -1,0 +1,103 @@
+<!-- ====================================================================================== -->
+<!-- 							Pagina para Modificar una Receta							-->
+<!-- ====================================================================================== -->
+
+<!-- DTD Para que marque y autocorrija errores de ThymeLeaf o de HTMl -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+	<head>
+		 <!-- Incluyo a Bootstrap FrameWork -->
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/bootstrap-3.3.2-dist/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/bootstrap-3.3.2-dist/css/bootstrap-theme.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/style/main.css"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/style/modificarReceta.css"/>
+		<script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+		<script  type="text/javascript" src="/GreenFood/public/js/modificarReceta.js"></script>
+	</head>
+	
+	
+	<body>	
+		<div id="modificarReceta" class="background">
+		
+			<!-- Incluyo el Menu a traves de ThymeLeaf -->
+			<div th:include="menu :: incluirMenu"></div>
+		
+		
+			<!-- Cuerpo -->
+			<div class="container" id="cuerpo">
+				<h3>MODIFICAR RECETA</h3>
+				<h3 th:text="${receta.getNombre()}">Nombre Receta</h3>
+				
+				
+				<table id="ingredientesDisponibles">
+					<tr>
+						<th>INGREDIENTES DISPONIBLES</th>
+					</tr>
+					
+					<tr th:each="ingrediente : ${ingredientesDisponibles}">
+						<td th:text="${ingrediente.getNombre()}" class="link" id="Ingrediente-" th:attrappend="id='' + ${ingrediente.getId()}">Nombre Ingrediente</td>
+					</tr>
+				</table>
+				
+				
+				<h3>TEMPORADAS DISPONIBLES</h3>
+				<table id="temporadas">
+					<tr>
+						<th>Nombre Temporada</th>
+					</tr>
+					
+					<!-- Lista de Strings -->
+					<tr th:each="temporada : ${temporadasDisponibles}">
+						<td th:text="${temporada}" class="link">Temporada</td>
+					</tr>
+				</table>
+				
+				<h3>HORARIOS DISPONIBLES</h3>
+				<table id="horariosDisponibles">
+					<tr>
+						<th>Nombre Horario</th>
+					</tr>
+					
+					<!-- Lista de Strings -->
+					<tr th:each="horario : ${horariosDisponibles}">
+						<td th:text="${horario}" class="link">Horario</td>
+					</tr>
+				</table>
+				
+				
+				<br/><br/>
+				<form action="#" th:action="@{'/recetas/modificar/' + ${receta.getId()}}" method="post">
+					Descripcion: <input type="text" name="descripcion" required="required" value="Descripcion"  th:value="${receta.getDescripcion()}"/><br/>
+					Calorias: <input type="number" name="calorias" min="1" max="9999" required="required" value="0"  th:value="${receta.getCalorias()}"/><br/>
+					Temporada: <input type="text" id="temporada" name="temporada" required="required"/><br/>
+					Horario: <input type="text" id="horario" name="horario" required="required"/><br/>
+					
+					<!-- CON JAVASCRIPT O ALGO FALTAN ENVIAR LA LISTA DE INGREDIENTES -->
+					
+					<input type="hidden" id="ingredientes" name="ingredientes"/>
+					<input type="submit" value="Modificar Receta" />
+				</form>
+				
+			</div>
+
+
+			<!-- Footer -->
+			<div id="footer">
+				<div class="navbar-default navbar-static-bottom degradado noselect">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<p>Green Food S.A.© 2015 | Recetas, Comidas</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+		</div>
+	</body>
+</html>

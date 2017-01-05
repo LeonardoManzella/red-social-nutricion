@@ -1,0 +1,103 @@
+<!-- ====================================================================================== -->
+<!-- 					Pagina para ver las Recetas que Puede Acceder el Usuario			-->
+<!-- ====================================================================================== -->
+
+<!-- DTD Para que marque y autocorrija errores de ThymeLeaf o de HTMl -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+	<head>
+		 <!-- Incluyo a Bootstrap FrameWork -->
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/bootstrap-3.3.2-dist/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/bootstrap-3.3.2-dist/css/bootstrap-theme.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/style/main.css"/>
+		<script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+		<script  type="text/javascript" src="/GreenFood/public/js/main.js"></script>
+	</head>
+	
+	
+	<body>	
+		<div class="background">
+		
+		
+			<!-- Incluyo el Menu a traves de ThymeLeaf -->
+			<div th:include="menu :: incluirMenu"></div>
+		
+			<!-- Cuerpo -->
+			<div class="container" id="cuerpo">
+			
+				<h2>RECETAS</h2>
+				<table>
+					<tr>
+						<th>Nombre Receta</th>
+						<th>Descripcion</th>
+						<th>Calificacion Promedio</th>
+						<th>Calorias</th>
+					</tr>
+					
+					<tr th:each="receta : ${recetasDisponibles}">
+						<td th:text="${receta.getNombre()}">Nombre</td>
+						<td th:text="${receta.getDescripcion()}">Descripcion</td>
+						<td th:text="${receta.calcularPromedio()}">0.0</td>
+						<td th:text="${receta.getCalorias()}">0</td>
+						<td>
+						
+							<!-- Botones Varios -->
+							<div class="btn-group">
+							  <button type="button" class="btn btn-info">Con esta receta..</button>
+							  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							    <span class="caret"></span>
+							    <span class="sr-only">Toggle Dropdown</span>
+							  </button>
+							  <ul class="dropdown-menu">
+							    <li><a href="#" th:href="@{'/recetas/modificar/' + ${receta.getId()}}">Modificar</a></li>
+							    <li><a href="#" th:href="@{'/recetas/duplicar/' + ${receta.getId()}}">Duplicar</a></li>
+							    <li><a href="#" th:href="@{'/recetas/planificar/' + ${receta.getId()}}">Planificar</a></li>
+							  </ul>
+							</div>
+						
+							<!-- Para Calificar Receta -->
+							<div class="btn-group">
+							  <button type="button" class="btn btn-info">Calificar</button>
+							  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							    <span class="caret"></span>
+							    <span class="sr-only">Toggle Dropdown</span>
+							  </button>
+							  <ul class="dropdown-menu">
+							    <li><a href="#" th:href="@{'/recetas/' + ${receta.getId()} + '/calificar/1'}">1 Estrella</a></li>
+							    <li><a href="#" th:href="@{'/recetas/' + ${receta.getId()} + '/calificar/2'}">2 Estrella</a></li>
+							    <li><a href="#" th:href="@{'/recetas/' + ${receta.getId()} + '/calificar/3'}">3 Estrella</a></li>
+							    <li><a href="#" th:href="@{'/recetas/' + ${receta.getId()} + '/calificar/4'}">4 Estrella</a></li>
+							    <li><a href="#" th:href="@{'/recetas/' + ${receta.getId()} + '/calificar/5'}">5 Estrella</a></li>
+							  </ul>
+							</div>
+							
+							<!-- Para Eliminar la Receta, solo en caso que El la contenga -->
+							<form th:if="${objetoUsuario.contieneReceta(receta)==true}"  action="" th:action="@{'/recetas/eliminar/' + ${receta.getId()}}" method="post">
+								<input type="submit" value="Eliminar" />
+							</form>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+
+			<!-- Footer -->
+			<div id="footer">
+				<div class="navbar-default navbar-static-bottom degradado noselect">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<p>Green Food S.A.© 2015 | Recetas, Comidas</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+		</div>
+	</body>
+</html>

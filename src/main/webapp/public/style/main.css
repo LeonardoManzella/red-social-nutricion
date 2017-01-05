@@ -1,0 +1,135 @@
+#facebook-btn, #google-plus-btn{
+	height: 36px;
+	width: 36px;
+	background-image: url('../iconos/socialSprites.svg');
+	display: inline-block;
+}
+
+#facebook-btn {
+	background-position: 0px 0px;
+}
+
+#facebook-btn:hover {
+	background-position: 0px 36px;
+}
+
+#google-plus-btn {
+	background-position: -36px 0px;
+}
+
+#google-plus-btn:hover {
+	background-position: -36px 36px;
+}
+
+#carousel-slider {
+	max-width: 960px;
+	margin: auto;
+}
+
+body {
+	background-color: #000000 !important;
+}
+
+.background {
+	background-color: black;
+	color : white;
+}
+
+#cuerpo {
+	max-width: 990px;
+}
+
+#header {
+	border:0;
+}
+
+#container-header {
+	width: 100%;
+	background-color: #0D4111;
+}
+
+#menu {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+#logo {
+	padding-top: 0px;
+	max-height: 50px;
+}
+
+.active a {
+	background-color: #0E793C !important;
+}
+
+form a {
+	color: #0D4111 !important;
+}
+
+#calendario, #consultarRecetas {
+	cursor: default !important;
+}
+
+#mobile-btn {
+	border-color: #0E793C;
+}
+
+p, h1, h2, h3, h4, h5, h6, label {
+	color: #FFFFFF !important;
+}
+
+/* Degradado del Footer */
+.degradado {
+    background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #0E793D),
+		color-stop(1, #000000)
+	);
+	background-image: -o-linear-gradient(bottom, #0E793D 0%, #000000 100%);
+	background-image: -moz-linear-gradient(bottom, #0E793D 0%, #000000 100%);
+	background-image: -webkit-linear-gradient(bottom, #0E793D 0%, #000000 100%);
+	background-image: -ms-linear-gradient(bottom, #0E793D 0%, #000000 100%);
+	background-image: linear-gradient(to bottom, #0E793D 0%, #000000 100%);
+}
+
+/* IE8- CSS hack */
+@media \0screen\,screen\9 {
+	.degradado {
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff320000",endColorstr="#ff000000",GradientType=0);
+	}
+}
+
+#footer {
+	padding-top: 50px;
+}
+
+#espacio {
+	height: 84px;
+}
+
+.link:hover {
+	text-decoration: none;
+	color: #FFF;
+	cursor: pointer;
+}
+
+.link, .link:active {
+	color: #777;
+	text-decoration: none;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+
+input {
+	color : black;
+}

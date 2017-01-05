@@ -1,0 +1,155 @@
+<!-- ====================================================================================== -->
+<!-- 			Pagina para Elegir entre los Distintos Tipos de Reportes que hay			-->
+<!-- ====================================================================================== -->
+
+<!-- DTD Para que marque y autocorrija errores de ThymeLeaf o de HTMl -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+	<head>
+		 <!-- Incluyo a Bootstrap FrameWork -->
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/bootstrap-3.3.2-dist/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/bootstrap-3.3.2-dist/css/bootstrap-theme.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/style/main.css"/>
+		<script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+		<script  type="text/javascript" src="/GreenFood/public/js/main.js"></script>
+	</head>
+	
+	
+	<body>	
+		<div class="background">
+		
+		
+			<!-- Incluyo el Menu a traves de ThymeLeaf -->
+			<div th:include="menu :: incluirMenu"></div>
+		
+			<!-- Cuerpo -->
+			<div class="container" id="cuerpo">
+				<table>
+					<tr>
+						<th>GRUPOS ALIMENTICIOS DISPONIBLES</th>
+					</tr>
+					
+					<!-- Lista de Strings -->
+					<tr th:each="grupoAlimenticio : ${gruposAlimenticiosDisponibles}">
+						<td th:text="${grupoAlimenticio}">Grupo</td>
+					</tr>
+				</table>
+				
+				
+				<br/><br/>
+				<table>
+					<tr>
+						<th>USUARIOS DISPONIBLES</th>
+					</tr>
+					
+					<tr th:each="usuario : ${usuarios}">
+						<td th:text="${usuario.getNombre()}">Grupo</td>
+					</tr>
+				</table>
+				
+				
+				<br/><br/>
+				<table>
+					<tr>
+						<th>INGREDIENTES DISPONIBLES</th>
+					</tr>
+					
+					<tr th:each="ingrediente : ${ingredientesDisponibles}">
+						<td th:text="${ingrediente.getNombre()}">Nombre Ingrediente</td>
+					</tr>
+				</table>
+						
+				
+				<br/><br/>
+				<h2>Reportes de Comidas por Ingrediente</h2>
+				
+				<form action="#" th:action="@{/reportes/comidasIngrediente}" method="post">
+					Nombre Usuario: <input type="text" name="nombreUsuario" required="required"/>
+					Nombre Ingrediente: <input type="text" name="nombreIngrediente" required="required"/>
+					<input type="submit" value="Ver Reporte" />
+				</form>
+										
+				
+				<br/><br/>
+				<h2>Reportes de Comidas por Grupo Alimenticio</h2>
+				
+				<form action="#" th:action="@{/reportes/comidasGrupo}" method="post">
+					Nombre Usuario: <input type="text" name="nombreUsuario" required="required"/>
+					Nombre Grupo Alimenticio: <input type="text" name="nombreGrupoAlimenticio" required="required"/>
+					<input type="submit" value="Ver Reporte" />
+				</form>
+						
+				
+				<br/><br/>
+				<h2>Reportes de Recetas Nuevas</h2>
+				
+				<form action="#" th:action="@{/reportes/recetasNuevas}" method="post">
+					Nombre Usuario: <input type="text" name="nombreUsuario" required="required"/>
+					<input type="submit" value="Ver Reporte" />
+				</form>
+						
+				
+				<br/><br/>
+				<h2>Reportes de Comidas Planificadas Compartidas (No Propias)</h2>
+				
+				<form action="#" th:action="@{/reportes/comidasCompartidas}" method="post">
+					Nombre Usuario: <input type="text" name="nombreUsuario" required="required"/>
+					<input type="submit" value="Ver Reporte" />
+				</form>
+						
+				
+				<br/><br/>
+				<h2>Reportes de Comidas Planificadas por SubNombre Receta</h2>
+				
+				<form action="#" th:action="@{/reportes/comidasNombre}" method="post">
+					Nombre Usuario: <input type="text" name="nombreUsuario" required="required"/>
+					Nombre Receta: <input type="text" name="nombreReceta" required="required"/>
+					<input type="submit" value="Ver Reporte" />
+				</form>
+						
+				
+				<br/><br/>
+				<h2>Reportes de Comidas por Periodo de Tiempo</h2>
+				
+				<form action="#" th:action="@{/reportes/comidasPeriodo}" method="post">
+					Nombre Usuario: <input type="text" name="nombreUsuario" required="required"/>
+					Fecha Inicio: <input type="date" name="fechaInicio" required="required"/>
+					Fecha Fin: <input type="date" name="fechaFin" required="required"/><br/>
+					Nota: El formato de las fechas debe ser Anio-Mes-Dia, ejemplo: 2015-12-09<br/>
+					<input type="submit" value="Ver Reporte" />
+				</form>
+		
+				
+				<br/><br/>
+				<h2>Reportes de Comidas por Calorias</h2>
+				
+				<form action="#" th:action="@{/reportes/comidasCalorias}" method="post">
+					Nombre Usuario: <input type="text" name="nombreUsuario" required="required"/>
+					Calorias Minimas: <input type="number" name="caloriasInicio" min="1" max="9999" required="required"/>
+					Calorias Maximas: <input type="number" name="caloriasFin" min="1" max="9999" required="required"/>
+					<input type="submit" value="Ver Reporte" />
+				</form>
+				
+			</div>
+
+
+			<!-- Footer -->
+			<div id="footer">
+				<div class="navbar-default navbar-static-bottom degradado noselect">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<p>Green Food S.A.© 2015 | Recetas, Comidas</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+		</div>
+	</body>
+</html>

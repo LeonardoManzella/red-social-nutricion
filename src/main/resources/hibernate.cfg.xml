@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DTD para AutoCorreccion del XML -->
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+    	<!-- Conexion con la Base de Datos de MySQL -->
+        <property name="hibernate.connection.driver_class"> com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url"> jdbc:mysql://localhost:3306/greenfood</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="connection.password">root</property>
+        <property name="connection.pool_size">1</property>
+        <property name="hibernate.dialect"> org.hibernate.dialect.MySQLDialect </property>
+        <property name="show_sql">true</property>
+        <property name="hbm2ddl.auto">create</property>
+        
+        
+        <!-- Decimos que Entidades se Persistiran, cada una contiene con Annotations como se persistira -->
+        <mapping class="ar.edu.utn.ba.dds.entidades.Comida"/>
+        <mapping class="ar.edu.utn.ba.dds.entidades.Grupo"/>
+        <mapping class="ar.edu.utn.ba.dds.entidades.Ingrediente"/>
+        <mapping class="ar.edu.utn.ba.dds.entidades.Piramide"/>
+        <mapping class="ar.edu.utn.ba.dds.entidades.Receta"/>
+        <mapping class="ar.edu.utn.ba.dds.entidades.Usuario"/>
+        <mapping class="ar.edu.utn.ba.dds.entidades.Proporcion"/>
+        <mapping class="ar.edu.utn.ba.dds.entidades.Calificacion"/>
+      	<mapping class="ar.edu.utn.ba.dds.implement.GrupoAlimenticio"/>
+      	<mapping class="ar.edu.utn.ba.dds.entidades.RestriccionAlimentaria"/>
+      	<mapping class="ar.edu.utn.ba.dds.entidades.RestriccionTipoAlimento"/>
+        
+    </session-factory>
+</hibernate-configuration>

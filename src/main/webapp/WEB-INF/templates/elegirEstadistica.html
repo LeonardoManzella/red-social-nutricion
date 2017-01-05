@@ -1,0 +1,86 @@
+<!-- ====================================================================================== -->
+<!-- 			Pagina para elegir cual Estadistica quiere ver el Usuario					-->
+<!-- ====================================================================================== -->
+
+<!-- DTD Para que marque y autocorrija errores de ThymeLeaf o de HTMl -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+	<head>
+		 <!-- Incluyo a Bootstrap FrameWork -->
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/bootstrap-3.3.2-dist/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/bootstrap-3.3.2-dist/css/bootstrap-theme.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/style/main.css"/>
+		<script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+		<script  type="text/javascript" src="/GreenFood/public/js/main.js"></script>
+	</head>
+	
+	
+	<body>	
+		<div class="background">
+		
+		
+			<!-- Incluyo el Menu a traves de ThymeLeaf -->
+			<div th:include="menu :: incluirMenu"></div>
+		
+			<!-- Cuerpo -->
+			<div class="container" id="cuerpo">
+			
+				<h3>TEMPORADAS DISPONIBLES</h3>
+				<table>
+					<tr>
+						<th>Nombre Temporada</th>
+					</tr>
+					
+					<!-- Lista de Strings -->
+					<tr th:each="temporada : ${temporadasDisponibles}">
+						<td th:text="${temporada}">Temporada</td>
+					</tr>
+				</table>
+						
+				
+				<br/><br/>
+				<h3>Estadisticas de Recetas Mas Programadas Por Estacion</h3>
+				
+				<form action="#" th:action="@{/estadisticas/masProgramadas}" method="post">
+					Temporada: <input type="text" name="temporada" required="required"/>
+					Fecha Inicio: <input type="date" name="fechaInicio" required="required"/>
+					Fecha Fin: <input type="date" name="fechaFin" required="required"/><br/>
+					Nota: El formato de las fechas debe ser Anio-Mes-Dia, ejemplo: 2015-12-09<br/>
+					<input type="submit" value="Ver Estadistica" />
+				</form>
+				
+						
+				
+				<br/><br/>
+				<h3>Estadisticas de Recetas Mas Copiadas/Duplicadas para Armar Otras Recetas</h3>
+				
+				<form action="#" th:action="@{/estadisticas/masCopiadas}" method="post">
+					Fecha Inicio: <input type="date" name="fechaInicio" required="required"/>
+					Fecha Fin: <input type="date" name="fechaFin" required="required"/><br/>
+					Nota: El formato de las fechas debe ser Anio-Mes-Dia, ejemplo: 2015-12-09<br/>
+					<input type="submit" value="Ver Estadistica" />
+				</form>
+				
+			</div>
+
+
+			<!-- Footer -->
+			<div id="footer">
+				<div class="navbar-default navbar-static-bottom degradado noselect">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<p>Green Food S.A.© 2015 | Recetas, Comidas</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+		</div>
+	</body>
+</html>

@@ -1,0 +1,69 @@
+<!-- ====================================================================================== -->
+<!-- 					Pagina para Unirse y Salirse de Grupos de Usuarios					-->
+<!-- ====================================================================================== -->
+
+<!-- DTD Para que marque y autocorrija errores de ThymeLeaf o de HTMl -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+	<head>
+		 <!-- Incluyo a Bootstrap FrameWork -->
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/bootstrap-3.3.2-dist/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/bootstrap-3.3.2-dist/css/bootstrap-theme.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/style/main.css"/>
+		<script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+		<script  type="text/javascript" src="/GreenFood/public/js/main.js"></script>
+	</head>
+	
+	
+	<body>	
+		<div class="background">
+		
+		
+			<!-- Incluyo el Menu a traves de ThymeLeaf -->
+			<div th:include="menu :: incluirMenu"></div>
+		
+			<!-- Cuerpo -->
+			<div class="container" id="cuerpo">
+				<table>
+					<tr>
+						<th>GRUPOS</th>
+					</tr>
+					
+					<tr th:each="grupo : ${grupos}">
+						<td th:text="${grupo.getDescripcion()}">Descripcion</td>
+						<td th:if="${grupo.contieneUsuario(objetoUsuario)==true}"><a href="#" th:href="@{'/grupos/' + ${grupo.getId()}}">Ver Grupo</a></td>
+						<td th:if="${grupo.contieneUsuario(objetoUsuario)==true}">
+							<form action="" th:action="@{'/grupos/salir/' + ${grupo.getId()}}" method="post">
+								<input type="submit" value="Salir del Grupo" />
+							</form>
+						</td>
+						<td th:if="${grupo.contieneUsuario(objetoUsuario)==false}">
+							<form action="" th:action="@{'/grupos/unir/' + ${grupo.getId()}}" method="post">
+								<input type="submit" value="Unirse al Grupo" />
+							</form>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+
+			<!-- Footer -->
+			<div id="footer">
+				<div class="navbar-default navbar-static-bottom degradado noselect">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<p>Green Food S.A.© 2015 | Recetas, Comidas</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+		</div>
+	</body>
+</html>

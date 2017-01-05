@@ -1,0 +1,93 @@
+<!-- ====================================================================================== -->
+<!-- 							Pagina para Registrar un Nuevo Usuario						-->
+<!-- ====================================================================================== -->
+
+<!-- DTD Para que marque y autocorrija errores de ThymeLeaf o de HTMl -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+	<head>
+		 <!-- Incluyo a Bootstrap FrameWork -->
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/bootstrap-3.3.2-dist/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/bootstrap-3.3.2-dist/css/bootstrap-theme.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/style/main.css"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/style/registrarUsuario.css"/>
+		<script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+		<script  type="text/javascript" src="/GreenFood/public/js/registrarUsuario.js"></script>
+	</head>
+	
+	
+	<body>	
+		<div class="background" id="registrarUsuario">
+		
+			<!-- Incluyo el Menu a traves de ThymeLeaf -->
+			<div th:include="menu :: incluirMenu"></div>
+		
+			<!-- Cuerpo -->
+			<div class="container" id="cuerpo">
+			
+			
+				<!-- TODO DEREK: No se como se hace la parte de Javascript de las Listas, Lo Mismo con el RadioButton y el Char no va hasta el Controller -->
+				<table id="ingredientesDisponibles">
+					<tr>
+						<th>INGREDIENTES DISPONIBLES para las PREFERENCIAS</th>
+					</tr>
+					
+					<tr th:each="ingrediente : ${ingredientesDisponibles}">
+						<td th:text="${ingrediente.getNombre()}" class="link" id="Ingrediente-" th:attrappend="id='' + ${ingrediente.getId()}">Nombre Ingrediente</td>
+					</tr>
+				</table>
+				
+				<table id="gruposAlimenticios">
+					<tr>
+						<th>GRUPOS ALIMENTICIOS DISPONIBLES para la RESTRICCION ALIMENTARIA</th>
+					</tr>
+					
+					<!-- Lista de Strings -->
+					<tr th:each="grupoAlimenticio : ${gruposAlimenticiosDisponibles}">
+						<td th:text="${grupoAlimenticio}" class="link">Grupo</td>
+					</tr>
+				</table>
+				<p>Nota: Dejar Sin seleccionar ningun grupo para no tener resitrccion alimentaria</p>
+				
+				
+				<br/><br/>
+				<form id="registrarUsuarioForm" action="#" th:action="@{/registrar}" method="post">
+					Nombre Usuario: <input type="text" name="nombreUsuario" required="required"/><br/>
+					Password: <input type="password" name="passwordUsuario" required="required"/><br/>
+					Edad: <input type="number" name="edad" min="1" max="9999" required="required"/><br/>
+					Sexo: <input type="radio" name="sexo" value="H">Hombre</input>
+						  <input type="radio" name="sexo" value="M">Mujer</input>
+					<br/>
+					Nombre Restriccion Alimentaria: <input type="text" name="nombreRestriccion" required="required"/><br/>
+					<p>Nota: Dejar Sin Vacio para no tener resitrccion alimentaria</p>
+					
+					<input type="hidden" id="preferencias" name="preferencias"/>
+					<input type="hidden" id="restricciones" name="restricciones"/>
+					
+					<!-- CON JAVASCRIPT O ALGO FALTAN ENVIAR LAS LISTAS y no anda bien el RADIOBUTTON ARRIBA, hay que enviarlo por Javascript como CHAR -->
+					<input type="submit" value="Registrar Usuario" />
+				</form>
+				<!-- <button type="button" id="submitRegistrar">Registrar Usuario</button>  -->
+			</div>
+
+
+			<!-- Footer -->
+			<div id="footer">
+				<div class="navbar-default navbar-static-bottom degradado noselect">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<p>Green Food S.A.© 2015 | Recetas, Comidas</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+		</div>
+	</body>
+</html>

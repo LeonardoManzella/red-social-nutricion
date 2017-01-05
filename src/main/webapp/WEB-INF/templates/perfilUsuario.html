@@ -1,0 +1,98 @@
+<!-- ====================================================================================== -->
+<!-- 						Pagina para Mostrar los Datos del Usuario						-->
+<!-- ====================================================================================== -->
+
+<!-- DTD Para que marque y autocorrija errores de ThymeLeaf o de HTMl -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+	<head>
+		 <!-- Incluyo a Bootstrap FrameWork -->
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/bootstrap-3.3.2-dist/css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/bootstrap-3.3.2-dist/css/bootstrap-theme.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/GreenFood/public/style/main.css"/>
+		<script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+		<script  type="text/javascript" src="/GreenFood/public/js/main.js"></script>
+	</head>
+	
+	
+	<body>	
+		<div class="background">
+		
+		
+			<!-- Incluyo el Menu a traves de ThymeLeaf -->
+			<div th:include="menu :: incluirMenu"></div>
+		
+			<!-- Cuerpo -->
+			<div class="container" id="cuerpo">
+				<p>Mail: <span th:text="${objetoUsuario.getMail()}">Email</span></p>
+				<p>Nombre: <span th:text="${objetoUsuario.getNombre()}">nombre</span></p>
+				<p>Edad: <span th:text="${objetoUsuario.getEdad()}">Edad</span></p>
+				<p>Sexo: <span th:text="${objetoUsuario.getSexo()}">Sexo</span></p>
+				
+				<br/>
+				<table>
+					<tr>
+						<th>RECETAS PROPIAS</th>
+					</tr>
+					
+					<tr th:each="receta : ${objetoUsuario.getRecetas()}">
+						<td th:text="${receta.getNombre()}">NombreReceta</td>
+					</tr>
+				</table>
+				
+				<br/>
+				<table>
+					<tr>
+						<th>PREFERENCIAS</th>
+					</tr>
+					
+					<tr th:if="${objetoUsuario.getPreferencias().isEmpty()==false}" th:each="ingrediente : ${objetoUsuario.getPreferencias()}">
+						<td th:text="${ingrediente.getNombre()}">NombreIngrediente</td>
+					</tr>
+					
+					<tr th:if="${objetoUsuario.getPreferencias().isEmpty()==true}" >
+						<td>Sin Preferencias. Al Usuario le da todo igual.</td>
+					</tr>
+				</table>
+				
+				<br/>
+				<h3>Restricciones</h3>
+				<p>
+					<span th:if="${objetoUsuario.getRestriccion()!=null}"  class="label label-info">
+						Restriccion: <span th:text="${objetoUsuario.getRestriccion().getNombre()}">Restriccion</span>
+					</span>
+					
+					<span th:if="${objetoUsuario.getRestriccion()==null}" class="label label-success">
+						Restriccion: No Hay Restricciones
+					</span>
+				</p>
+				
+				<table th:if="${objetoUsuario.getRestriccion()!=null}">
+					<!-- Es una Lista de Strings -->
+					<tr th:each="restriccion : ${objetoUsuario.getRestriccion().obtenerNombresRestricciones()}">
+						<td th:text="${restriccion}">NombreRestriccion</td>
+					</tr>
+				</table>
+			</div>
+
+
+			<!-- Footer -->
+			<div id="footer">
+				<div class="navbar-default navbar-static-bottom degradado noselect">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								<p>Green Food S.A.© 2015 | Recetas, Comidas</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+		</div>
+	</body>
+</html>
