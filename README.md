@@ -3,9 +3,12 @@ Tecnologías Utilizadas: `Lenguaje Java`, `Hibernate`, `Spring`, `HTML y CSS`, `
 Base de Datos: `MySQl`
 
 Creamos una red social donde las personas pueden:
+
 • Compartir y comentar recetas
 • Planificar que van a comer y que comieron.
+
 • Definir dietas y planes de alimentación
+
 • Puede usarse desde PC o Tablets y Celulares
 
 También les brinda Sugerencias en base a los gustos y su plan de alimentación.
